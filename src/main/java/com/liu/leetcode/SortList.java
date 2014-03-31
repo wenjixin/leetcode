@@ -1,6 +1,5 @@
 package com.liu.leetcode;
 
-import java.awt.HeadlessException;
 
 public class SortList {
 	static class ListNode {
