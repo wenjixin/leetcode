@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LRUCache {
-	boolean debug=true;
+	boolean debug=false;
 	private int capacity;
 	private int position;
 	private Map<Integer, DoubleLinkedList> cacheMap;
@@ -60,8 +60,7 @@ public class LRUCache {
 				cacheMap.remove(end.pre.key);
 				D("remove:"+end.pre.key);
 				// remove end previous node
-				end.pre.pre.next = end;
-				end.pre = end.pre.pre;
+				removeFromList(end.pre);
 			}
 			cacheMap.put(key, node);
 			// add to start
@@ -88,7 +87,7 @@ public class LRUCache {
 	}
 
 	public static void main(String[] args) {
-		LRUCache lruCache = new LRUCache(2);
+		LRUCache lruCache = new LRUCache(3);
 
 		// lruCache.set(1, 1);
 		// lruCache.set(2, 2);
@@ -116,9 +115,9 @@ public class LRUCache {
 		lruCache.set(2, 2);
 		lruCache.set(3, 3);
 		lruCache.set(4, 4);
-		lruCache.get(4);
-		lruCache.get(3);
-		lruCache.get(2);
+		lruCache.get(4); //4
+		lruCache.get(3); //3
+		lruCache.get(2); //2
 		lruCache.get(1);
 		lruCache.set(5, 5);
 		lruCache.get(1);
